@@ -95,15 +95,15 @@ if __name__ == '__main__':
                 frame, pose[0], pose[1], color=(0, 255, 0))
 
             # Do you want to see the head axes?
-            # pose_estimator.draw_axes(frame, pose[0], pose[1])
+            pose_estimator.draw_axes(frame, pose[0], pose[1])
 
             # Do you want to see the marks?
-            # mark_detector.draw_marks(frame, marks, color=(0, 255, 0))
+            mark_detector.draw_marks(frame, marks, color=(0, 255, 0))
 
             # Do you want to see the facebox?
-            # mark_detector.draw_box(frame, [facebox])
+            mark_detector.draw_box(frame, [facebox])
 
         # Show preview.
-        cv2.imshow("Preview", frame)
+        # cv2.imshow("Preview", frame)
         if cv2.waitKey(1) == 27:
             break
