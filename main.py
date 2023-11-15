@@ -36,7 +36,11 @@ if __name__ == '__main__':
         print("Video source not assigned, default webcam will be used.")
         video_src = 0
 
-    cap = cv2.VideoCapture(video_src)
+    # cap = cv2.VideoCapture(video_src)
+    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)  # this is the magic!
+
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
 
     # Get the frame size. This will be used by the pose estimator.
     width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
@@ -52,9 +56,10 @@ if __name__ == '__main__':
     tm = cv2.TickMeter()
 
     # Now, let the frames flow.
-    while True:
+    import time
 
-        # Read a frame.
+    while True:
+        t1 = time.perf_counter(), time.process_time()  # Read a frame.
         frame_got, frame = cap.read()
         if frame_got is False:
             break
@@ -104,6 +109,9 @@ if __name__ == '__main__':
             mark_detector.draw_box(frame, [facebox])
 
         # Show preview.
-        # cv2.imshow("Preview", frame)
+        cv2.imshow("Preview", frame)
         if cv2.waitKey(1) == 27:
             break
+        t2 = time.perf_counter(), time.process_time()
+        print(f" Real time: {t2[0] - t1[0]:.4f} seconds")
+        print(f" CPU time: {t2[1] - t1[1]:.4f} seconds")

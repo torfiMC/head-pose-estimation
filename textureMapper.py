@@ -180,7 +180,7 @@ class RoamingRalphDemo(ShowBase):
         # Get the time elapsed since the next frame.  We need this for our
         # distance and velocity calculations.
         dt = globalClock.getDt()
-
+        print(dt)
         # If the ship is not alive, do nothing.  Tasks return Task.cont to
         # signify that the task should continue running. If Task.done were
         # returned instead, the task would be removed and would no longer be

@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
+print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
 
 
 class FaceDetector:
@@ -151,10 +152,10 @@ class MarkDetector:
 
     def detect_marks(self, image):
         """Detect facial marks from an face image.
-        
+
         Args:
             image: a face image.
-            
+
         Returns:
             marks: the facial marks as a numpy array of shape [N, 2].
         """
